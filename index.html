@@ -17,6 +17,9 @@
         <div class="row">  
           <div class="column">
             <form id="room-entry-form" action="">
+              <!-- Add a hidden input field for the timestamp -->
+              <input type="hidden" id="Timestamp" name="Timestamp" value="">
+
               <label for="Name">Name</label>
               <input type="text" id="Name" name="Name" placeholder="Your name.." required>
 
@@ -33,21 +36,13 @@
 
               <label for="department">Department</label>
               <select id="Department" name="Department" required>
-                <option value="ece">Electronics and Communication Engineering (ECE)</option>
-                <option value="eee">Electrical and Electronics Engineering (EEE)</option>
-                <option value="civi">Civil Engineering</option>
-                <option value="meh">Mechanical Engineering</option>
-                <option value="ice">Instrumentation and Control Engineering (ICE)</option>
-                <option value="cse">Computer Science and Engineering (CSE)</option>
-                <option value="ai">Artificial Intelligence (AI)</option>
-                <option value="cybersec">Cyber Security</option>
+                <!-- Add your department options here -->
               </select>
 
               <label for="Membership">Are You IEDC Member or Not ?</label>
               <select id="Membership" name="Membership" required>
                 <option value="Yes">Yes I'm</option>
                 <option value="No">No, I'm not IEDC Member</option>
-               
               </select>
 
               <label for="Purpose">Purpose</label>
@@ -63,8 +58,20 @@
       </div>
       <script>
         $(document).ready(function () {
+            // Add a function to get the current timestamp and update the hidden input
+            function updateTimestamp() {
+                var now = new Date();
+                var timestamp = now.toISOString(); // UTC timestamp
+                $("#Timestamp").val(timestamp);
+            }
+
+            // Call the function to update timestamp when the document is ready
+            updateTimestamp();
+
             $("#room-entry-form").submit((e)=>{
                 e.preventDefault();
+                // Update the timestamp before submitting the form
+                updateTimestamp();
                 $.ajax({
                     url: "https://script.google.com/macros/s/AKfycbwbeEOfv2ZFqp-TTtw-WiuG1UfMA04VZ6BU-FVougyIUCGgyyufaMxlg9froC9vKxAK/exec",
                     data: $("#room-entry-form").serialize(),
