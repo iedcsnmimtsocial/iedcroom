@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <title>IEDC Room Entry</title>
+</head>
+<body>
+    <div class="container">
+        <div style="text-align:center">
+          <h2>IEDC Room Entry</h2>
+          <p>Please provide the following information:</p>
+        </div>
+        <div class="row">  
+          <div class="column">
+            <form id="room-entry-form" action="">
+              <label for="Name">Name</label>
+              <input type="text" id="Name" name="Name" placeholder="Your name.." required>
+
+              <label for="Phone">Phone Number</label>
+              <input type="tel" id="phone" name="Phone" placeholder="Your phone number.." required>
+
+              <label for="Year">Year</label>
+              <select id="year" name="year" required>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+              </select>
+
+              <label for="department">Department</label>
+              <select id="Department" name="Department" required>
+                <option value="ece">Electronics and Communication Engineering (ECE)</option>
+                <option value="eee">Electrical and Electronics Engineering (EEE)</option>
+                <option value="civi">Civil Engineering</option>
+                <option value="meh">Mechanical Engineering</option>
+                <option value="ice">Instrumentation and Control Engineering (ICE)</option>
+                <option value="cse">Computer Science and Engineering (CSE)</option>
+                <option value="ai">Artificial Intelligence (AI)</option>
+                <option value="cybersec">Cyber Security</option>
+              </select>
+
+              <label for="Membership">Are You IEDC Member or Not ?</label>
+              <select id="Membership" name="Membership" required>
+                <option value="Yes">Yes I'm</option>
+                <option value="No">No, I'm not IEDC Member</option>
+               
+              </select>
+
+              <label for="Purpose">Purpose</label>
+              <textarea id="Purpose" name="Purpose" placeholder="Why are you visiting?" style="height:170px" required></textarea>
+
+              <input type="submit" value="Submit">
+            </form>
+          </div>
+          <div class="column">
+         
+          </div>
+        </div>
+      </div>
+      <script>
+        $(document).ready(function () {
+            $("#room-entry-form").submit((e)=>{
+                e.preventDefault();
+                $.ajax({
+                    url: "https://script.google.com/macros/s/AKfycbx0bwytokboqKBDdhJ_iPYybQPlLdDJxhe2qELzpSxyJVuj9JplvEJKwk2B6kd2UW3J/exec",
+                    data: $("#room-entry-form").serialize(),
+                    method: "post",
+                    success: function (response) {
+                        alert("Room entry submitted successfully");
+                        window.location.reload();
+                    },
+                    error: function (err) {
+                        alert("Something went wrong");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
