@@ -45,8 +45,7 @@
                 <option value="ai">Artificial Intelligence (AI)</option>
                 <option value="cybersec">Cyber Security</option>
               </select>
-
-              <label for="Membership">Are You IEDC Member or Not ?</label>
+ <label for="Membership">Are You IEDC Member or Not ?</label>
               <select id="Membership" name="Membership" required>
                 <option value="Yes">Yes I'm</option>
                 <option value="No">No, I'm not IEDC Member</option>
@@ -68,8 +67,9 @@
             // Add a function to get the current timestamp and update the hidden input
             function updateTimestamp() {
                 var now = new Date();
-                var timestamp = now.toISOString(); // UTC timestamp
-                $("#Timestamp").val(timestamp);
+                // Get the current timestamp in IST timezone
+                var timestampIST = now.toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+                $("#Timestamp").val(timestampIST);
             }
 
             // Call the function to update timestamp when the document is ready
